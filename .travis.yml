@@ -13,20 +13,22 @@ install:
 before_script:
   - echo "no tests"
 
+# Build and tag
 script:
   - docker --version # print the version for logging
   - docker build -t udagram-api-feed ./udagram-api-feed
-  - docker tag udagram-api-feed mscharin/udagram-api-feed:v1
+  - docker tag udagram-api-feed mscharin/udagram-api-feed:v2
   - docker build -t udagram-api-user ./udagram-api-user
-  - docker tag udagram-api-user mscharin/udagram-api-user:v1
+  - docker tag udagram-api-user mscharin/udagram-api-user:v2
   - docker build -t udagram-frontend ./udagram-frontend
-  - docker tag udagram-frontend mscharin/udagram-frontend:v1
+  - docker tag udagram-frontend mscharin/udagram-frontend:v2
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
-  - docker tag udagram-reverseproxy mscharin/udagram-reverseproxy:v1
+  - docker tag udagram-reverseproxy mscharin/udagram-reverseproxy:v2
 
+# Push to Dockerhub
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mscharin/udagram-api-feed:v1
-  - docker push mscharin/udagram-api-user:v1
-  - docker push mscharin/udagram-frontend:v1
-  - docker push mscharin/udagram-reverseproxy:v1
+  - docker push mscharin/udagram-api-feed:v2
+  - docker push mscharin/udagram-api-user:v2
+  - docker push mscharin/udagram-frontend:v2
+  - docker push mscharin/udagram-reverseproxy:v2
