@@ -23,7 +23,7 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-frontend mscharin/udagram-frontend:v2
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
-  - docker tag udagram-reverseproxy mscharin/udagram-reverseproxy:v2
+  - docker tag udagram-reverseproxy mscharin/udagram-reverseproxy:v3
 
 # Push to Dockerhub
 after_success:
@@ -31,4 +31,4 @@ after_success:
   - docker push mscharin/udagram-api-feed:v2
   - docker push mscharin/udagram-api-user:v2
   - docker push mscharin/udagram-frontend:v2
-  - docker push mscharin/udagram-reverseproxy:v2
+  - docker push mscharin/udagram-reverseproxy:v3
